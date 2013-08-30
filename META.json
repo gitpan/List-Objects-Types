@@ -4,7 +4,7 @@
       "Jon Portnoy <avenj@cobaltirc.org>"
    ],
    "dynamic_config" : 0,
-   "generated_by" : "Dist::Zilla version 4.300035, CPAN::Meta::Converter version 2.120921",
+   "generated_by" : "Dist::Zilla version 4.300037, CPAN::Meta::Converter version 2.120921",
    "license" : [
       "perl_5"
    ],
@@ -29,13 +29,11 @@
       },
       "runtime" : {
          "requires" : {
-            "Carp" : "0",
             "List::Objects::WithUtils" : "1.009",
             "Type::Library" : "0",
             "Type::Tiny" : "0.022",
             "Type::Utils" : "0",
-            "Types::Standard" : "0",
-            "strictures" : "1"
+            "Types::Standard" : "0"
          }
       },
       "test" : {
@@ -52,6 +50,6 @@
          "web" : "git://github.com/avenj/list-objects-types"
       }
    },
-   "version" : "0.001001"
+   "version" : "0.002001"
 }
 

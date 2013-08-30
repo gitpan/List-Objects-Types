@@ -10,7 +10,6 @@ use File::Spec::Functions;
 use List::Util qw/max/;
 
 my @modules = qw(
-  Carp
   ExtUtils::MakeMaker
   List::Objects::WithUtils
   Test::More
@@ -18,7 +17,6 @@ my @modules = qw(
   Type::Tiny
   Type::Utils
   Types::Standard
-  strictures
 );
 
 # replace modules with dynamic results from MYMETA.json if we can

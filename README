@@ -46,7 +46,8 @@ DESCRIPTION
    ImmutableArray
     An object that isa List::Objects::WithUtils::Array::Immutable.
 
-    Can be coerced from a plain ARRAY; a shallow copy is performed.
+    Can be coerced from a plain ARRAY or an "ArrayObj"; a shallow copy is
+    performed.
 
 AUTHOR
     Jon Portnoy <avenj@cobaltirc.org>
