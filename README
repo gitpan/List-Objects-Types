@@ -49,6 +49,11 @@ DESCRIPTION
     Can be coerced from a plain ARRAY or an "ArrayObj"; a shallow copy is
     performed.
 
+   TypedArray
+    An object that isa List::Objects::WithUtils::Array::Typed.
+
+    Not coercible.
+
 AUTHOR
     Jon Portnoy <avenj@cobaltirc.org>
 

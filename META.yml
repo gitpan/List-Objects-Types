@@ -14,11 +14,11 @@ meta-spec:
   version: 1.4
 name: List-Objects-Types
 requires:
-  List::Objects::WithUtils: 1.009
+  List::Objects::WithUtils: 1.010
   Type::Library: 0
   Type::Tiny: 0.022
   Type::Utils: 0
   Types::Standard: 0
 resources:
   repository: git://github.com/avenj/list-objects-types.git
-version: 0.002001
+version: 0.003001

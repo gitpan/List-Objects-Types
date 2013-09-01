@@ -1,6 +1,6 @@
 package List::Objects::Types;
 {
-  $List::Objects::Types::VERSION = '0.002001';
+  $List::Objects::Types::VERSION = '0.003001';
 }
 use strict; use warnings FATAL => 'all';
 
@@ -30,6 +30,11 @@ coerce ImmutableArray =>
     via { immarray($_->all) };
 
 declare ImmutableArrayObj => as 'ImmutableArray';
+
+
+declare TypedArray =>
+  as Object() =>
+  where { $_->isa('List::Objects::WithUtils::Array::Typed') };
 
 
 declare HashObj =>
@@ -99,6 +104,12 @@ Can be coerced from a plain HASH; a shallow copy is performed.
 An object that isa L<List::Objects::WithUtils::Array::Immutable>.
 
 Can be coerced from a plain ARRAY or an L</ArrayObj>; a shallow copy is performed.
+
+=head3 TypedArray
+
+An object that isa L<List::Objects::WithUtils::Array::Typed>.
+
+Not coercible.
 
 =head1 AUTHOR
 

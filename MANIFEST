@@ -18,4 +18,4 @@ t/release-pod-syntax.t
 t/release-synopsis.t
 t/release-unused-vars.t
 t/types.t
-xt/moo.t
+t/withmoo.t
