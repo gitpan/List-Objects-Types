@@ -7,6 +7,9 @@ Makefile.PL
 README
 README.mkdn
 dist.ini
+examples/2d_typedarray_moops.pl
+examples/2d_typedarray_moose.pl
+examples/typedarray.pl
 lib/List/Objects/Types.pm
 t/00-report-prereqs.t
 t/release-cpan-changes.t
