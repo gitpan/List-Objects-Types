@@ -1,6 +1,6 @@
 package List::Objects::Types;
 {
-  $List::Objects::Types::VERSION = '0.004002';
+  $List::Objects::Types::VERSION = '0.004003';
 }
 use strict; use warnings FATAL => 'all';
 
@@ -37,7 +37,7 @@ declare TypedArray =>
   as InstanceOf[ 'List::Objects::WithUtils::Array::Typed' ],
   constraint_generator => sub {
     my $param = to_TypeTiny(shift);
-    return sub { $_->{type}->is_a_type_of($param) }
+    return sub { $_->type->is_a_type_of($param) }
   },
   coercion_generator => sub {
     my ($parent, $child, $param) = @_;
