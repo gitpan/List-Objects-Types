@@ -81,6 +81,18 @@ DESCRIPTION
     (The "examples/" directory that comes with this distribution contains
     some examples of parameterized & coercible TypedArrays.)
 
+   TypedHash
+    An object that isa List::Objects::WithUtils::Hash::Typed.
+
+    Not coercible.
+
+   TypedHash[`a]
+    TypedHash can be parameterized with another type constraint, like
+    "TypedArray".
+
+    Can be coerced from a plain HASH or a "HashObj". If the parameter also
+    has a coercion, this will be applied to each value in the new hash.
+
 AUTHOR
     Jon Portnoy <avenj@cobaltirc.org> with significant contributions from
     Toby Inkster (CPAN: TOBYINK)

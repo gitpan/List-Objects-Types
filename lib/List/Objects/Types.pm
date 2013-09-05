@@ -1,19 +1,20 @@
 package List::Objects::Types;
 {
-  $List::Objects::Types::VERSION = '0.004004';
+  $List::Objects::Types::VERSION = '0.005001';
 }
 use strict; use warnings FATAL => 'all';
 
 use Type::Library -base;
 use Type::Utils   -all;
 use Types::Standard -types;
-use Types::TypeTiny 'to_TypeTiny';
+use Types::TypeTiny ();
 
 use List::Objects::WithUtils qw/
   array
   array_of
   immarray 
   hash
+  hash_of
 /;
 
 declare ArrayObj =>
@@ -36,7 +37,7 @@ coerce ImmutableArray =>
 declare TypedArray =>
   as InstanceOf[ 'List::Objects::WithUtils::Array::Typed' ],
   constraint_generator => sub {
-    my $param = to_TypeTiny(shift);
+    my $param = Types::TypeTiny::to_TypeTiny(shift);
     return sub { $_->type->is_a_type_of($param) }
   },
   coercion_generator => sub {
@@ -64,6 +65,33 @@ declare HashObj =>
 
 coerce HashObj =>
   from HashRef() => via { hash(%$_) };
+
+
+declare TypedHash =>
+  as InstanceOf[ 'List::Objects::WithUtils::Hash::Typed' ],
+  constraint_generator => sub {
+    my $param = Types::TypeTiny::to_TypeTiny(shift);
+    return sub { $_->type->is_a_type_of($param) }
+  },
+  coercion_generator => sub {
+    my ($parent, $child, $param) = @_;
+    my $c = Type::Coercion->new(type_constraint => $child);
+    if ($param->has_coercion) {
+      my $inner = $param->coercion;
+      $c->add_type_coercions(
+        HashRef() => sub { hash_of($param)->set(%$_) },
+        HashObj() => sub { hash_of($param)->set( $_->export ) },
+      );
+    } else {
+      $c->add_type_coercions(
+        HashRef() => sub { hash_of($param, %$_) },
+        HashObj() => sub { hash_of($param, $_->export) },
+      );
+    }
+
+ 
+    return $c->freeze
+  };
 
 1;
 
@@ -158,6 +186,20 @@ to each item in the new array.
 
 (The C<examples/> directory that comes with this distribution contains some
 examples of parameterized & coercible TypedArrays.)
+
+=head3 TypedHash
+
+An object that isa L<List::Objects::WithUtils::Hash::Typed>.
+
+Not coercible.
+
+=head3 TypedHash[`a]
+
+TypedHash can be parameterized with another type constraint, like
+L</TypedArray>.
+
+Can be coerced from a plain HASH or a L</HashObj>. If the parameter also has a
+coercion, this will be applied to each value in the new hash.
 
 =head1 AUTHOR
 

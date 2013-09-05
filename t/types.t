@@ -11,6 +11,7 @@ use List::Objects::WithUtils qw/
   array_of
   immarray
   hash
+  hash_of
 /;
 
 # array/hash
@@ -30,13 +31,23 @@ should_pass $typed, TypedArray[Num];
 should_pass $typed, TypedArray[Int];
 should_fail $typed, TypedArray[GlobRef];
 
+# hash_of
+my $htyped = hash_of(Int() => ( foo => 1, baz => 2 ) );
+should_pass $htyped, HashObj;
+should_pass $htyped, TypedHash;
+should_pass $htyped, TypedHash[Num];
+should_pass $htyped, TypedHash[Int];
+should_fail $htyped, TypedHash[GlobRef];
+
 # failures
 should_fail [],  ArrayObj;
-should_fail +{}, HashObj;
 should_fail [],  ImmutableArray;
 should_fail [],  TypedArray;
 should_fail array(), ImmutableArray;
 should_fail array(), TypedArray;
+should_fail +{}, HashObj;
+should_fail +{}, TypedHash;
+should_fail hash(), TypedHash;
 
 # unions
 should_pass [],       (ArrayRef | ArrayObj);
@@ -66,7 +77,17 @@ should_pass $coerced, TypedArray[Int];
 is_deeply(
   [  $coerced->all ],
   [ 1..4 ],
-  'inner coercions worked',
+  'TypedArray inner coercions worked',
+);
+
+$coerced = (TypedHash[$RoundedInt])->coerce(
+  { foo => 1, bar => 2, baz => 3.14}
+);
+should_pass $coerced, TypedHash[Int];
+is_deeply(
+  +{ $coerced->export },
+  +{ foo => 1, bar => 2, baz => 3 },
+  'TypedHash inner coercions worked'
 );
 
 done_testing;
