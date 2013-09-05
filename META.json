@@ -29,7 +29,7 @@
       },
       "runtime" : {
          "requires" : {
-            "List::Objects::WithUtils" : "1.010",
+            "List::Objects::WithUtils" : "1.011",
             "Type::Library" : "0",
             "Type::Tiny" : "0.022",
             "Type::Utils" : "0",
@@ -50,6 +50,6 @@
          "web" : "git://github.com/avenj/list-objects-types"
       }
    },
-   "version" : "0.004003"
+   "version" : "0.004004"
 }
 

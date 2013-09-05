@@ -1,6 +1,6 @@
 package List::Objects::Types;
 {
-  $List::Objects::Types::VERSION = '0.004003';
+  $List::Objects::Types::VERSION = '0.004004';
 }
 use strict; use warnings FATAL => 'all';
 
