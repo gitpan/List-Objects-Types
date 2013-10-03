@@ -20,7 +20,7 @@ my %WriteMakefileArgs = (
   "LICENSE" => "perl",
   "NAME" => "List::Objects::Types",
   "PREREQ_PM" => {
-    "List::Objects::WithUtils" => "1.011",
+    "List::Objects::WithUtils" => 2,
     "Type::Library" => 0,
     "Type::Tiny" => "0.022",
     "Type::Utils" => 0,
@@ -29,7 +29,7 @@ my %WriteMakefileArgs = (
   "TEST_REQUIRES" => {
     "Test::More" => "0.88"
   },
-  "VERSION" => "0.005001",
+  "VERSION" => "0.006001",
   "test" => {
     "TESTS" => "t/*.t"
   }
