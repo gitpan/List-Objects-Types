@@ -20,7 +20,7 @@ my %WriteMakefileArgs = (
   "LICENSE" => "perl",
   "NAME" => "List::Objects::Types",
   "PREREQ_PM" => {
-    "List::Objects::WithUtils" => "2.003",
+    "List::Objects::WithUtils" => 2,
     "Type::Library" => 0,
     "Type::Tiny" => "0.022",
     "Type::Utils" => 0,
@@ -29,7 +29,7 @@ my %WriteMakefileArgs = (
   "TEST_REQUIRES" => {
     "Test::More" => "0.88"
   },
-  "VERSION" => "1.001001",
+  "VERSION" => "1.002001",
   "test" => {
     "TESTS" => "t/*.t"
   }
@@ -37,7 +37,7 @@ my %WriteMakefileArgs = (
 
 
 my %FallbackPrereqs = (
-  "List::Objects::WithUtils" => "2.003",
+  "List::Objects::WithUtils" => 2,
   "Test::More" => "0.88",
   "Type::Library" => 0,
   "Type::Tiny" => "0.022",

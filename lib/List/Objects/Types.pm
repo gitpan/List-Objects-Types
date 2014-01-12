@@ -1,6 +1,6 @@
 package List::Objects::Types;
 {
-  $List::Objects::Types::VERSION = '1.001001';
+  $List::Objects::Types::VERSION = '1.002001';
 }
 use strict; use warnings FATAL => 'all';
 
@@ -9,7 +9,7 @@ use Type::Utils     -all;
 use Types::Standard -types;
 use Types::TypeTiny ();
 
-use List::Objects::WithUtils 2;
+use List::Objects::WithUtils;
 
 
 declare ArrayObj =>
@@ -35,7 +35,7 @@ declare TypedArray =>
   as ConsumerOf[ 'List::Objects::WithUtils::Role::Array::Typed' ],
   constraint_generator => sub {
     my $param = Types::TypeTiny::to_TypeTiny(shift);
-    return sub { $_->type->is_a_type_of($param) }
+    sub { $_->type->is_a_type_of($param) }
   },
   coercion_generator => sub {
     my ($parent, $child, $param) = @_;
@@ -53,14 +53,14 @@ declare TypedArray =>
       );
     }
 
-    return $c->freeze
+    $c->freeze
   };
 
 declare ImmutableTypedArray =>
   as InstanceOf[ 'List::Objects::WithUtils::Array::Immutable::Typed' ],
   constraint_generator => sub {
     my $param = Types::TypeTiny::to_TypeTiny(shift);
-    return sub { $_->type->is_a_type_of($param) }
+    sub { $_->type->is_a_type_of($param) }
   },
   coercion_generator => sub {
     my ($parent, $child, $param) = @_;
@@ -102,11 +102,19 @@ coerce ImmutableHash =>
   from HashObj() => via { immhash($_->export) };
 
 
+declare InflatedHash =>
+  as InstanceOf['List::Objects::WithUtils::Hash::Inflated'];
+
+coerce InflatedHash =>
+  from HashRef() => via { hash(%$_)->inflate },
+  from HashObj() => via { $_->inflate },
+
+
 declare TypedHash =>
   as ConsumerOf[ 'List::Objects::WithUtils::Role::Hash::Typed' ],
   constraint_generator => sub {
     my $param = Types::TypeTiny::to_TypeTiny(shift);
-    return sub { $_->type->is_a_type_of($param) }
+    sub { $_->type->is_a_type_of($param) }
   },
   coercion_generator => sub {
     my ($parent, $child, $param) = @_;
@@ -133,7 +141,7 @@ declare TypedHash =>
     }
 
  
-    return $c->freeze
+    $c->freeze
   };
 
 
@@ -141,7 +149,7 @@ declare ImmutableTypedHash =>
   as InstanceOf[ 'List::Objects::WithUtils::Hash::Immutable::Typed' ],
   constraint_generator => sub {
     my $param = Types::TypeTiny::to_TypeTiny(shift);
-    return sub { $_->type->is_a_type_of($param) }
+    sub { $_->type->is_a_type_of($param) }
   },
   coercion_generator => sub {
     my ($parent, $child, $param) = @_;
@@ -168,7 +176,7 @@ declare ImmutableTypedHash =>
     }
 
  
-    return $c->freeze
+    $c->freeze
   };
 
 1;
@@ -304,6 +312,12 @@ ImmutableTypedHash can be parameterized with another type constraint, like
 L</TypedHash>.
 
 Can be coerced from a plain HASH or an L</HashObj>.
+
+=head3 InflatedHash
+
+An object that isa L<List::Objects::WithUtils::Hash::Inflated>.
+
+Can be coerced from a C<HashRef> or C<HashObj>.
 
 =head1 AUTHOR
 
