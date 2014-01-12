@@ -1,6 +1,6 @@
 package List::Objects::Types;
 {
-  $List::Objects::Types::VERSION = '1.002001';
+  $List::Objects::Types::VERSION = '1.002002';
 }
 use strict; use warnings FATAL => 'all';
 
@@ -317,7 +317,7 @@ Can be coerced from a plain HASH or an L</HashObj>.
 
 An object that isa L<List::Objects::WithUtils::Hash::Inflated>.
 
-Can be coerced from a C<HashRef> or C<HashObj>.
+Can be coerced from a plain HASH or an L</HashObj>.
 
 =head1 AUTHOR
 

@@ -119,7 +119,7 @@ DESCRIPTION
    InflatedHash
     An object that isa List::Objects::WithUtils::Hash::Inflated.
 
-    Can be coerced from a "HashRef" or "HashObj".
+    Can be coerced from a plain HASH or an "HashObj".
 
 AUTHOR
     Jon Portnoy <avenj@cobaltirc.org> with significant contributions from
