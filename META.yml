@@ -3,11 +3,16 @@ abstract: 'Type::Tiny-based types for List::Objects::WithUtils'
 author:
   - 'Jon Portnoy <avenj@cobaltirc.org>'
 build_requires:
+  ExtUtils::MakeMaker: 0
+  File::Spec: 0
+  List::Util: 0
+  Scalar::Util: 0
   Test::More: 0.88
+  version: 0.77
 configure_requires:
   ExtUtils::MakeMaker: 6.30
 dynamic_config: 0
-generated_by: 'Dist::Zilla version 5.006, CPAN::Meta::Converter version 2.120921'
+generated_by: 'Dist::Zilla version 5.019, CPAN::Meta::Converter version 2.141520'
 license: perl
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.4.html
@@ -21,4 +26,4 @@ requires:
   Types::Standard: 0
 resources:
   repository: git://github.com/avenj/list-objects-types.git
-version: 1.002002
+version: 1.002003

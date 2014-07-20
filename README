@@ -41,11 +41,8 @@ SYNOPSIS
       );
 
 DESCRIPTION
-    A small set of Type::Tiny-based types & coercions for
-    List::Objects::WithUtils.
-
-    Also see MoopsX::ListObjects, which provides Moops class-building sugar
-    with List::Objects::WithUtils integration.
+    A set of Type::Tiny-based types & coercions matching the list objects
+    found in List::Objects::WithUtils.
 
    ArrayObj
     An object that consumes List::Objects::WithUtils::Role::Array.
@@ -120,6 +117,17 @@ DESCRIPTION
     An object that isa List::Objects::WithUtils::Hash::Inflated.
 
     Can be coerced from a plain HASH or an "HashObj".
+
+  SEE ALSO
+    MoopsX::ListObjects for integration with Moops class-building sugar.
+
+    List::Objects::WithUtils for more on the relevant list objects.
+
+    Type::Tiny for more on type methods & overloads.
+
+    Types::Standard for a set of useful base types.
+
+    Type::Library for details on importing types.
 
 AUTHOR
     Jon Portnoy <avenj@cobaltirc.org> with significant contributions from

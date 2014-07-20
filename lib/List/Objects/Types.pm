@@ -1,7 +1,5 @@
 package List::Objects::Types;
-{
-  $List::Objects::Types::VERSION = '1.002002';
-}
+$List::Objects::Types::VERSION = '1.002003';
 use strict; use warnings FATAL => 'all';
 
 use Type::Library   -base;
@@ -107,7 +105,7 @@ declare InflatedHash =>
 
 coerce InflatedHash =>
   from HashRef() => via { hash(%$_)->inflate },
-  from HashObj() => via { $_->inflate },
+  from HashObj() => via { $_->inflate };
 
 
 declare TypedHash =>
@@ -229,11 +227,8 @@ List::Objects::Types - Type::Tiny-based types for List::Objects::WithUtils
 
 =head1 DESCRIPTION
 
-A small set of L<Type::Tiny>-based types & coercions for
-L<List::Objects::WithUtils>.
-
-Also see L<MoopsX::ListObjects>, which provides L<Moops> class-building sugar
-with L<List::Objects::WithUtils> integration.
+A set of L<Type::Tiny>-based types & coercions matching the list objects found
+in L<List::Objects::WithUtils>.
 
 =head3 ArrayObj
 
@@ -318,6 +313,18 @@ Can be coerced from a plain HASH or an L</HashObj>.
 An object that isa L<List::Objects::WithUtils::Hash::Inflated>.
 
 Can be coerced from a plain HASH or an L</HashObj>.
+
+=head2 SEE ALSO
+
+L<MoopsX::ListObjects> for integration with L<Moops> class-building sugar.
+
+L<List::Objects::WithUtils> for more on the relevant list objects.
+
+L<Type::Tiny> for more on type methods & overloads.
+
+L<Types::Standard> for a set of useful base types.
+
+L<Type::Library> for details on importing types.
 
 =head1 AUTHOR
 
