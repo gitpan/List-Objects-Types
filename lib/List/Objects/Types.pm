@@ -1,5 +1,5 @@
 package List::Objects::Types;
-$List::Objects::Types::VERSION = '1.002003';
+$List::Objects::Types::VERSION = '1.003001';
 use strict; use warnings FATAL => 'all';
 
 use Type::Library   -base;
@@ -101,7 +101,11 @@ coerce ImmutableHash =>
 
 
 declare InflatedHash =>
-  as InstanceOf['List::Objects::WithUtils::Hash::Inflated'];
+  as InstanceOf['List::Objects::WithUtils::Hash::Inflated'],
+  constraint_generator => sub {
+    my @params = @_;
+    sub { Scalar::Util::blessed $_ and not grep(!$_[0]->can($_), @params) }
+  };
 
 coerce InflatedHash =>
   from HashRef() => via { hash(%$_)->inflate },
@@ -313,6 +317,11 @@ Can be coerced from a plain HASH or an L</HashObj>.
 An object that isa L<List::Objects::WithUtils::Hash::Inflated>.
 
 Can be coerced from a plain HASH or an L</HashObj>.
+
+=head3 InflatedHash[`a]
+
+InflatedHash can be parameterized with a list of methods expected to be
+available.
 
 =head2 SEE ALSO
 

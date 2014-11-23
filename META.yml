@@ -5,14 +5,11 @@ author:
 build_requires:
   ExtUtils::MakeMaker: 0
   File::Spec: 0
-  List::Util: 0
-  Scalar::Util: 0
   Test::More: 0.88
-  version: 0.77
 configure_requires:
-  ExtUtils::MakeMaker: 6.30
+  ExtUtils::MakeMaker: 0
 dynamic_config: 0
-generated_by: 'Dist::Zilla version 5.019, CPAN::Meta::Converter version 2.141520'
+generated_by: 'Dist::Zilla version 5.025, CPAN::Meta::Converter version 2.142690'
 license: perl
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.4.html
@@ -26,4 +23,4 @@ requires:
   Types::Standard: 0
 resources:
   repository: git://github.com/avenj/list-objects-types.git
-version: 1.002003
+version: 1.003001
